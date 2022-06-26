@@ -5,9 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge - DOM</title>
+	<style>
+		html {
+			background: #CCCCCC;
+		}
+		#app {
+			padding: 20px;
+			background: #FFFFFF;
+			margin: auto;
+			max-width: 500px;
+			width: 100%;
+			margin-top: 20px;
+			border-radius: 10px;
+			text-align: center;
+		}
+		
+		#todo-output li {
+			text-align: left;
+		}
+		
+	</style>
   </head>
   <body>
     <div id="app">
+		<header>
+			<h1 id="todo-title">To-Do-List</h1>
+		</header>
+		
+		<form method="post">
+			<div id="todo-subtitle">
+				Today I want to
+			</div>
+			<input type="text" name="todo_input" id="todo-input"/>
+			<button type="submit" id="todo-submit">Submit</button>
+		</form>
+		<ul id="todo-output">
+		
+		</ul>
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
 
@@ -29,8 +63,30 @@
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
-
+      function fnClickHandler(toDoItem) {
+		
+		let li = document.createElement('li');
+		li.innerHTML = toDoItem
+		ul.appendChild(li);
+	  }
+		
+		const ul = document.querySelector('#todo-output');
+		document.querySelector('#todo-submit').addEventListener('click', (e) => {
+			e.preventDefault();
+			let item = document.querySelector('#todo-input').value;
+			fnClickHandler(item);
+		})
+		
+		document.querySelector('#todo-input').addEventListener('keypress', (e) => {
+			
+			if (e.key == 'Enter') {
+				e.preventDefault();
+				let item = document.querySelector('#todo-input').value;
+				fnClickHandler(item);
+			}
+			<!-- let item = document.querySelector('#todo-input').value; -->
+			<!-- fnClickHandler(item); -->
+		})
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
       
